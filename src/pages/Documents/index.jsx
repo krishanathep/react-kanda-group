@@ -268,12 +268,12 @@ const blogs = () => {
                     <div className="row">
                       <div className="col-md-12">
                         <div className="float-right">
-                          <button
+                          {/* <button
                             className="btn btn-success mb-2"
                             onClick={handleCreateShow}
                           >
                             <i className="fa fa-plus"></i> เพิ่มเอกสาร
-                          </button>
+                          </button> */}
                         </div>
                       </div>
                     </div>
@@ -336,7 +336,7 @@ const blogs = () => {
                               >
                                 <i className="fa fa-download"></i>
                               </a>{" "}
-                              <Button
+                              {/* <Button
                                 variant="info"
                                 size="sm"
                                 onClick={() => handleEditShow(blogs)}
@@ -349,7 +349,7 @@ const blogs = () => {
                                 onClick={() => hanldeDelete(blogs)}
                               >
                                 <i className="fa fa-trash"></i>
-                              </Button>
+                              </Button> */}
                             </>
                           ),
                         },
