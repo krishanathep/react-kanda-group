@@ -1,3 +1,5 @@
+import React from "react";
+
 const Preloader = () => {
   return (
     <div className="preloader flex-column justify-content-center align-items-center">
