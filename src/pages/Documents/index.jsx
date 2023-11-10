@@ -13,14 +13,6 @@ const blogs = () => {
   const [viewShow, setViewShow] = useState(false);
 
   const ViewClose = () => {
-    reset({
-      image: "",
-      title: "",
-      content: "",
-      category: "",
-      department: "",
-      author: "",
-    });
     setViewShow(false);
   };
 
@@ -109,6 +101,15 @@ const blogs = () => {
               <div className="col-lg-12">
                 <div className="card card-outline card-primary">
                   <div className="card-body">
+                    <div className="card">
+                      <div className="card-body">
+                        <div className="row">
+                          <div className="col-md-12">
+                            <input type="search" className="form-control" placeholder="ค้นหาเอกสาร" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <DataTable
                       style={{
                         fontFamily: "Prompt",
