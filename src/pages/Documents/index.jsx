@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { DataTable } from "mantine-datatable";
-import { Modal, Button, Form} from "react-bootstrap";
+import { Modal, Button, Form } from "react-bootstrap";
 
 import dayjs from "dayjs";
 import axios from "axios";
@@ -8,7 +8,6 @@ import axios from "axios";
 const PAGE_SIZES = [10, 20, 30];
 
 const blogs = () => {
-
   //view popup
   const [viewShow, setViewShow] = useState(false);
 
@@ -50,6 +49,78 @@ const blogs = () => {
         setLoading(false);
       });
   };
+
+   //filter function by title
+   async function titleFilter(key) {
+
+    const from = (page - 1) * pageSize;
+    const to = from + pageSize;
+
+    await axios
+      .get(
+        "https://full-stack-app.com/laravel_auth_jwt_api/public/api/document-filter-title?data=" +
+          key
+      )
+      .then((res) => {
+        setBlogs(res.data.document);
+        setRecords(res.data.document.slice(from, to));
+        setLoading(false);
+      });
+  }
+
+  //filter function by content
+  async function contentFilter(key) {
+
+    const from = (page - 1) * pageSize;
+    const to = from + pageSize;
+
+    await axios
+      .get(
+        "https://full-stack-app.com/laravel_auth_jwt_api/public/api/document-filter-content?data=" +
+          key
+      )
+      .then((res) => {
+        setBlogs(res.data.document);
+        setRecords(res.data.document.slice(from, to));
+        setLoading(false);
+      });
+  }
+
+  //filter function by category
+  async function categoryFilter(key) {
+
+    const from = (page - 1) * pageSize;
+    const to = from + pageSize;
+
+    await axios
+      .get(
+        "https://full-stack-app.com/laravel_auth_jwt_api/public/api/document-filter-category?data=" +
+          key
+      )
+      .then((res) => {
+        setBlogs(res.data.document);
+        setRecords(res.data.document.slice(from, to));
+        setLoading(false);
+      });
+  }
+
+  //filter function by department
+  async function departmentFilter(key) {
+
+    const from = (page - 1) * pageSize;
+    const to = from + pageSize;
+
+    await axios
+      .get(
+        "https://full-stack-app.com/laravel_auth_jwt_api/public/api/document-filter-department?data=" +
+          key
+      )
+      .then((res) => {
+        setBlogs(res.data.document);
+        setRecords(res.data.document.slice(from, to));
+        setLoading(false);
+      });
+  }
 
   useEffect(() => {
     getData();
@@ -105,7 +176,79 @@ const blogs = () => {
                       <div className="card-body">
                         <div className="row">
                           <div className="col-md-12">
-                            <input type="search" className="form-control" placeholder="ค้นหาเอกสาร" />
+                            <div className="card">
+                              <div className="card-body">
+                                <div className="row">
+                                  <div className="col-md-3">
+                                    <input
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="ชื่อเอกสาร"
+                                      onChange={(event) =>
+                                        titleFilter(event.target.value)
+                                      }
+                                    />
+                                  </div>
+                                  <div className="col-md-3">
+                                    <input
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="รายละเอียด"
+                                      onChange={(event) =>
+                                        contentFilter(event.target.value)
+                                      }
+                                    />
+                                  </div>
+                                  <div className="col-md-3">
+                                    <select
+                                      className="form-control"
+                                      aria-label="Default select example"
+                                      onChange={(event) =>
+                                        categoryFilter(event.target.value)
+                                      }
+                                    >
+                                      <option selected value="">
+                                        เลือกประเภท
+                                      </option>
+                                      <option value="เอกสารบริษัท">
+                                        เอกสารบริษัท
+                                      </option>
+                                      <option value="เอกสารจัดซื้อ">
+                                        เอกสารจัดซื้อ
+                                      </option>
+                                      <option value="เอกสารประกาศ">
+                                        เอกสารประกาศ
+                                      </option>
+                                      <option value="เอกสารทั่วไป">
+                                        เอกสารทั่วไป
+                                      </option>
+                                    </select>
+                                  </div>
+                                  <div className="col-md-3">
+                                    <select
+                                      className="form-control"
+                                      aria-label="Default select example"
+                                      onChange={(event) =>
+                                        departmentFilter(event.target.value)
+                                      }
+                                    >
+                                      <option selected value="">
+                                        เลือกหน่วยงาน
+                                      </option>
+                                      <option value="การขาย">การขาย</option>
+                                      <option value="การตลาด">การตลาด</option>
+                                      <option value="ไอที">ไอที</option>
+                                      <option value="ฝ่ายบุคคล">
+                                        ฝ่ายบุคคล
+                                      </option>
+                                      <option value="ฝ่ายวางแผน">
+                                        ฝ่ายวางแผน
+                                      </option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
